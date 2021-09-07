@@ -1,3 +1,6 @@
+import path from 'path'
+import fs from 'fs'
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -24,6 +27,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/css/style.css',
+    '~/assets/css/tailwind.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -35,6 +40,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/tailwindcss'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -43,5 +49,35 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  server: {
+    port: 8080, 
+    host: '0.0.0.0',
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+    }
+  },
+
+
+  /*
+  firebase: {
+    config: {
+      apiKey: "AIzaS ...",
+      authDomain: "test- ...",
+      projectId: "test- ...",
+      storageBucket: "test- ...",
+      messagingSenderId: "53999 ...",
+      appId: "1:539 ..."
+    },
+    services: {
+      auth: true,
+      firestore: true,
+      storage: true
+    }
+  },
+  */
+
+
 }
