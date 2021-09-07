@@ -18,6 +18,12 @@ export default {
 
     return "fade";
   },
+  /* 
+  return している文字列は 'layouts/default.vue' で定義している css の class を表している
+  詳しくは
+  https://ja.nuxtjs.org/docs/2.x/features/transitions
+  https://jp.vuejs.org/v2/guide/transitions.html#%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AF%E3%83%A9%E3%82%B9
+  */
 
 
 }
