@@ -1,8 +1,9 @@
 <!-- 以下 HTML ／ template直下はタグを1つしか置けない -->
 <template>
-  <div class="container">
+  <div class="p-2 box-border">
     <h1 class="bg-gray-300">Hello World</h1> <!-- デフォルトのh1スタイルが無効に -->
-    <div>val: {{ val }} (変数の呼び出し)</div>
+    <div @click="test()">val: {{ val }} (変数の呼び出し)</div>
+    <div class="bg-green-100 p-4 my-2 font-bold" @click="$router.push('/demo/transition')">GO TO demo/transition</div>
   </div>
 </template>
 
@@ -10,6 +11,8 @@
 <!-- 以下 JavaScript -->
 <script>
 export default {
+  layout: "default",
+
   // この中に、このクラス共通の変数を定義する(グローバル変数的な)。
   data() {
     return {
@@ -36,6 +39,7 @@ export default {
   // 上のHTMLにアクセスする場合に利用
   mounted() {
     // this.$fire 〜 firebaseへアクセスできる
+    // this.test()
   },
 
 
@@ -43,6 +47,7 @@ export default {
   // mounted や methods で呼び出す際には、'this' が必要
   methods: {
     test() {
+      alert("Hello World")
       this.log("Hello")
     },
     
