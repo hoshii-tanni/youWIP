@@ -21,16 +21,17 @@ export default {
 
 /* -> 右方向へ遷移 -> */
 .to-right-leave-active {
-  transition: transform .15s ease-in; 
+  transition: transform .15s;
   transform: translateX(0);
 }
 .to-right-leave-to {
   transform: translateX(-100%);
 }
 .to-right-enter-active {
-  transition: opacity .15s;
+  transition: transform .15s, opacity .15s;
 }
 .to-right-enter {
+  /*transform: scale(80%);*/
   opacity: 0;
 }
 
@@ -42,7 +43,7 @@ export default {
   opacity: 0;
 }
 .to-left-enter-active {
-  transition: transform .15s ease-out; 
+  transition: transform .15s; 
   transform: translateX(0);  
 }
 .to-left-enter {
