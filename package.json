@@ -22,7 +22,8 @@
     "postcss": "^8.3.6",
     "sass": "1.37.5",
     "sass-loader": "10.1.0",
-    "tailwindcss": "^2.2.10"
+    "tailwindcss": "^2.2.10",
+    "vue-ctk-date-time-picker": "^2.5.0"
   },
   "devDependencies": {}
 }

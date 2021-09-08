@@ -1,19 +1,48 @@
 <template>
-  <div class="">
-    <div class="header w-full h-14">
+  <div class="flex flex-col items-center">
+
+    <div class="header w-full h-14 z-10">
       <i class="bi bi-chevron-left text-2xl"></i>
-      <div class="text-xl">保存</div>
+      <div class="px-4 py-1 bg-pink text-white rounded">保存</div>
     </div>
-    <div class="content px-3 mt-16 mb-96 box-border flex flex-col">
-      <div><input type="text" /></div>
-      <div><input type="text" /></div>
-      <ul>
-        <li><input type="text" /></li>
+
+    <div class="content max-w-lg w-full px-3 mt-16 mb-96 box-border flex flex-col">
+      <div class="py-3">
+        <input class="w-full px-2 py-1 border-white rounded text-lg" type="text" placeholder="タイトル"/>
+      </div>
+
+      <div class="py-3 flex items-center">
+        <i class="bi bi-calendar-check text-2xl pr-1"></i>
+        <Datetime
+          v-model="deadline"
+          :label="'締め切り'"
+        ></Datetime>
+      </div>
+
+      <ul class="py-3">
+        <li class="flex items-center">
+          <i class="bi bi-hash text-2xl pr-1"></i>
+          <input class="px-2 py-1 rounded" type="text" placeholder=""/>
+          <i class="bi bi-trash-fill text-xl pl-2 text-gray-400"></i>
+        </li>
       </ul>
-      <div><i class="bi bi-plus-circle"></i></div>
-      <div><textarea name="" id="" cols="30" rows="10"></textarea></div>
-      <ul><li><input type="checkbox" /><input type="text" /></li></ul>
-      <div><i class="bi bi-plus-circle"></i></div>
+      <div class="pb-4 text-gray-400">
+        <i class="bi bi-plus-circle pl-3 pr-1"></i>タグを追加する
+      </div>
+
+      <div class="py-2">
+        <textarea rows="5" class="w-full p-2 rounded" placeholder="概要"></textarea>
+      </div>
+
+      <ul class="py-2">
+        <li class="flex items-center">
+          <input class="text-xl pr-2" type="checkbox"/>
+          <input class="w-full px-2 py-1 rounded" type="text" placeholder="ToDo..."/>
+        </li>
+      </ul>
+      <div class="pb-4 text-gray-400">
+        <i class="bi bi-plus-circle pl-3 pr-1"></i>ToDoを追加する
+      </div>
 
 
     </div>
@@ -22,14 +51,32 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Datetime from 'vue-ctk-date-time-picker';
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+
+Vue.component('VueCtkDateTimePicker', Datetime);
+
 export default {
+  components: {
+    Datetime
+  },
+  data() {
+    return {
+      deadline: ''
+    }
+  },
 
 }
 </script>
 
 <style lang="scss" scoped>
 .mt-18 { margin-top: 4.5rem; }
+.bg-pink { background-color: #da0063; }
 
+
+/* Date-ctk-picker */
+label.field-label { display: none }
 
 
 .header {
@@ -39,14 +86,30 @@ export default {
   padding: 0 .75rem;
   box-sizing: border-box;
 
+  backdrop-filter: blur(5px);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-
 input[type="text"], textarea {
   border: solid 1px #888;
+}
+
+input, select, textarea {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="checkbox"]::before {
+  font-family: bootstrap-icons !important;
+  content: "\f584";
+}
+
+input[type="checkbox"]:checked::before {
+  font-family: bootstrap-icons !important;
+  content: "\f26c";
 }
 
 
