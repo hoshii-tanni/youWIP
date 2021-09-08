@@ -61,15 +61,15 @@ export default {
   },
 
 
-  /*
+
   firebase: {
     config: {
-      apiKey: "AIzaS ...",
-      authDomain: "test- ...",
-      projectId: "test- ...",
-      storageBucket: "test- ...",
-      messagingSenderId: "53999 ...",
-      appId: "1:539 ..."
+      apiKey: "AIzaSyB_YkI5KUGNkVcW7MdLRPQmwPskAr9FR2s",
+      authDomain: "youwip-80560.firebaseapp.com",
+      projectId: "youwip-80560",
+      storageBucket: "youwip-80560.appspot.com",
+      messagingSenderId: "938121997946",
+      appId: "1:938121997946:web:7e822cdc66be28edde55c3",
     },
     services: {
       auth: true,
@@ -77,7 +77,7 @@ export default {
       storage: true
     }
   },
-  */
+
 
 
 }
