@@ -33,6 +33,15 @@
    >
      Submit
    </button>
+   <button
+     type="button"
+     @click="getData"
+   >
+     getData
+   </button>
+   <div id="task.title" />
+   <div id="task.description" />
+   <div id="task.date" />
  </div>
 </template>
 
@@ -62,6 +71,17 @@ export default {
          console.log('Add ID: ', ref.id)
        })
    },
+   getData () {
+     let docTasks = this.$fire.firestore.collection('tasks').doc('sb541NagO4wZGLUqh1uz')
+     docTasks
+         .get()
+         .then(function(doc) {
+           document.getElementById("task.title").innerHTML = (doc.data().title)
+           document.getElementById("task.description").innerHTML = (doc.data().description)
+           document.getElementById("task.date").innerHTML = (doc.data().deadline)
+         })
+   },
  },
+ 
 }
 </script>
