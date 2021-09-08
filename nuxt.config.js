@@ -1,6 +1,10 @@
 import path from 'path'
 import fs from 'fs'
 
+// ファイル上部で以下のモジュール読み込みを追加
+const Sass = require('sass')
+const Fiber = require('fibers')
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -68,6 +72,19 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    loaders: {
+      scss: {
+        implementation: Sass,
+        sassOptions: {
+          fiber: Fiber
+        }
+      }
+    },
+    /*
+     ** You can extend webpack config here
+     */
+    extend (config, ctx) {
+    }
   },
 
   server: {
