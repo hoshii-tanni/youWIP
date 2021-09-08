@@ -16,7 +16,7 @@ export default {
   head: {
     title: 'youWIP',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
@@ -33,6 +33,7 @@ export default {
   css: [
     '~/assets/css/style.css',
     '~/assets/css/tailwind.css',
+    { src: 'bootstrap-icons/font/bootstrap-icons.css', lang: 'css' },
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
