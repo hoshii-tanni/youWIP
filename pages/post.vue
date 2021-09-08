@@ -2,7 +2,14 @@
   <div class="">
     <div class="header w-full h-14">
       <i class="bi bi-chevron-left text-2xl"></i>
-      <div class="text-xl">保存</div>
+      <div class="text-xl">
+        <button
+     type="button"
+     @click="submit"
+   >
+     保存
+   </button>
+      </div>
     </div>
     <div class="content px-3 mt-16 mb-96 box-border flex flex-col">
       <div><input type="text" placeholder="タイトル" v-model="task.title"/></div>
