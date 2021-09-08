@@ -40,11 +40,30 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    ['@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyB_YkI5KUGNkVcW7MdLRPQmwPskAr9FR2s",
+          authDomain: "youwip-80560.firebaseapp.com",
+          projectId: "youwip-80560",
+          storageBucket: "youwip-80560.appspot.com",
+          messagingSenderId: "938121997946",
+          appId: "1:938121997946:web:7e822cdc66be28edde55c3",
+          measurementId: "G-MGB1S88NN1"
+        },
+        services: {
+          auth: true,
+          firestore: true,
+          storage: true
+        }
+      }
+    ]
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -61,23 +80,16 @@ export default {
   },
 
 
-
-  firebase: {
-    config: {
-      apiKey: "AIzaSyB_YkI5KUGNkVcW7MdLRPQmwPskAr9FR2s",
-      authDomain: "youwip-80560.firebaseapp.com",
-      projectId: "youwip-80560",
-      storageBucket: "youwip-80560.appspot.com",
-      messagingSenderId: "938121997946",
-      appId: "1:938121997946:web:7e822cdc66be28edde55c3",
-    },
-    services: {
-      auth: true,
-      firestore: true,
-      storage: true
+  firestore: {
+    memoryOnly: false, // default
+    chunkName: process.env.NODE_ENV !== 'production' ? 'firebase-auth' : '[id]', // default
+    enablePersistence: true,
+    emulatorPort: 8080,
+    emulatorHost: 'localhost',
+    settings: {
+      // Firestore Settings - currently only works in SPA mode
     }
-  },
-
+  }
 
 
 }
