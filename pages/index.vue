@@ -4,6 +4,7 @@
     <h1 class="bg-gray-300">Hello World</h1> <!-- デフォルトのh1スタイルが無効に -->
     <div @click="test()">val: {{ val }} (変数の呼び出し)</div>
     <div class="bg-green-100 p-4 my-2 font-bold" @click="$router.push('/demo/transition')">GO TO demo/transition</div>
+    <div class="bg-green-100 p-4 my-2 font-bold" @click="$router.push('/demo/add_firestore')">GO TO demo/add_firestore</div>
   </div>
 </template>
 
