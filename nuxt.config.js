@@ -1,6 +1,10 @@
 import path from 'path'
 import fs from 'fs'
 
+// ファイル上部で以下のモジュール読み込みを追加
+const Sass = require('sass')
+const Fiber = require('fibers')
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -12,7 +16,7 @@ export default {
   head: {
     title: 'youWIP',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
@@ -29,6 +33,7 @@ export default {
   css: [
     '~/assets/css/style.css',
     '~/assets/css/tailwind.css',
+    { src: 'bootstrap-icons/font/bootstrap-icons.css', lang: 'css' },
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -68,15 +73,28 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    loaders: {
+      scss: {
+        implementation: Sass,
+        sassOptions: {
+          fiber: Fiber
+        }
+      }
+    },
+    /*
+     ** You can extend webpack config here
+     */
+    extend (config, ctx) {
+    }
   },
 
   server: {
     port: 8080, 
-    host: '0.0.0.0',
+    /*host: '0.0.0.0',
     https: {
       key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
       cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-    }
+    }*/
   },
 
 
