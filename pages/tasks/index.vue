@@ -15,13 +15,18 @@
             <div class="text-xl font-bold">{{tasks[i].title}}</div>
             <img @click="clickEdit(tasks[i].post_id)" class="img" src="/edit.png" width="40" />
           </div>
+
+          <div class="flex ml-2 my-1">
+            <img class="img right w-6 h-6 mr-1" src="/calendar_green_01.png" />
+            {{tasks[i].deadline}}
+          </div>
+
           <div class="mx-2 my-1 text-gray-500">
             <ul class="flex">
-              <li v-for="(n,j) in tasks[i].tags.length" :key="j" @click="clickTag(tasks[i].tags[j])" class="flex flex-col mr-2">
+              <li v-for="(n,j) in tasks[i].tags.length" :key="j" @click="clickTag(tasks[i].tags[j])" class="flex flex-col text-pink mr-2">
                 #{{tasks[i].tags[j]}}
               </li>
             </ul>
-            
           </div>
 
           <AccordionList>
@@ -152,6 +157,7 @@ export default {
 <style lang="scss">
 .h−273 { height: 273px; }
 .bg-pink { background-color: #da0063; }
+.text-pink { color: #F45B69; }
 
 
 input, select, textarea {
