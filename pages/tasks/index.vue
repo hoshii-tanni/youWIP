@@ -13,7 +13,7 @@
           <div v-if="tasks[i].image!=''" class="image" :style="'background-image: url(' + tasks[i].image + ');'"></div>
           <div class="mx-2 mt-2 flex justify-between items-end">
             <div class="text-xl font-bold">{{tasks[i].title}}</div>
-            <img class="img" src="/edit.png" width="40" />
+            <img @click="clickEdit(tasks[i].post_id)" class="img" src="/edit.png" width="40" />
           </div>
           <div class="mx-2 my-1 pink underline">
             <ul class="flex">
@@ -108,6 +108,11 @@ export default {
       this.$router.push("/tasks/" + tag);
     },
 
+    // 編集画面に遷移する
+    clickEdit(post_id) {
+      this.$router.push({ path: '/tasks/update', query: {post_id: post_id} });
+    },
+
     // タグからタスクを探す
     getTaskFromTag(tag){
       const db = this.$fire.firestore;
@@ -127,7 +132,9 @@ export default {
 
       db.collection("tasks").where("usr_id","==",usr_id).get().then(snapShot => {
         snapShot.forEach(doc =>{
-          result.push(doc.data());
+          let array = doc.data();
+          array["post_id"] = doc.id;
+          result.push(array);
         })
       })
 
