@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center">
 
     <div class="header">
-      <img @click="$router.push('/post')" class="img" src="/plus_green_01.png" width="40" />
+      <img @click="$router.push('/tasks/new')" class="img" src="/plus_green_01.png" width="40" />
       <img class="img" src="/colored.png" />
       <img class="img" src="/timeline.png" width="40" />
     </div>
@@ -44,6 +44,15 @@
 
 <script>
 export default {
+  transition(to, from) {
+    if (to.path=="/tasks/new") return "to-right";
+    if (from!=undefined && from.path=="/tasks/new") return "to-left";
+    
+
+
+    return "fade";
+  },
+
   data() {
     return {
       tasks: [],
@@ -64,6 +73,21 @@ export default {
         deadline: "",
       }], // ToDo
     })
+
+    //this.getTaskFromTag("test1");
+  },
+
+  methods:{
+    getTaskFromTag(tag){
+      const db=this.$fire.firestore;
+      let result = [];
+
+      db.collection("tasks").where("tags","array-contains",tag).get().then(snapShot => {
+        snapShot.forEach(doc =>{
+          result.push(doc.data().todo);
+        })
+      })
+    }
   }
 
 }
