@@ -13,7 +13,6 @@
           <div v-if="tasks[i].image!=''" class="image" :style="'background-image: url(' + tasks[i].image + ');'"></div>
           <div class="mx-2 mt-2 flex justify-between items-end">
             <div class="text-xl font-bold">{{tasks[i].title}}</div>
-            <!--<i class="bi bi-pencil-fill bg-pink text-white flex justify-center items-center rounded w-8 h-8"></i>-->
             <img class="img" src="/edit.png" width="40" />
           </div>
           <div class="mx-2 my-1 text-gray-500">
