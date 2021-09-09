@@ -1,19 +1,20 @@
 <template>
   <div class="flex flex-col items-center">
 
-    <div class="header">
-      <i class="bi bi-chevron-left text-2xl"></i>
-      <div @click="display()">タスクの編集</div>
-      <div @click="submit()" class="px-4 py-1 bg-pink text-white rounded">保存</div>
+    <div class="header w-full h-20 z-10">
+      <!-- <i class="bi bi-chevron-left green text-2xl"></i> -->
+      <img class="img py-2" src="/back_01.png" width="40" />
+      <div class="px-4 py-2 bg-pink text-white rounded">保存</div>
     </div>
 
-    <div class="content max-w-lg w-full px-3 mt-16 mb-96 box-border flex flex-col">
-      <div class="py-2">
-        <input class="w-full px-2 py-1 border-white rounded text-lg font-bold" v-model="title" type="text" placeholder="タイトル"/>
+    <div class="content max-w-lg w-full px-3 mt-20 mb-96 box-border flex flex-col">
+      <div class="py-4">
+        <input class="w-full px-2 py-4 border-white rounded text-lg" type="text" placeholder="タイトル"/>
       </div>
 
-      <div class="py-2 flex items-center">
-        <i class="bi bi-calendar-check text-2xl pr-1"></i>
+      <div class="py-3 flex items-center">
+        <!-- <i class="bi bi-calendar-check text-2xl pr-1"></i> -->
+        <img class="img pr-1" src="/calendar_green_01.png" width="40" />
         <Datetime
           v-model="deadline"
           :color="'#99C9C5'"
@@ -22,18 +23,19 @@
         ></Datetime>
       </div>
 
-      <ul class="py-2">
-        <li v-for="(n,i) in tags.length" :key="i" class="flex items-center my-2">
-          <i class="bi bi-hash text-2xl pr-1"></i>
-          <input class="px-2 py-1 rounded" v-model="tags[i]" type="text" placeholder=""/>
-          <i @click="removeTag(i)" class="bi bi-trash-fill text-xl pl-2 text-gray-400"></i>
-        </li>
-        <li @click="addTag()" class="my-1 text-gray-400">
-          <i class="bi bi-plus-circle pl-3 pr-1"></i>
-          タグを追加する
+      <ul class="py-3">
+        <li class="flex items-center">
+          <!-- <i class="bi bi-hash text-2xl pr-1"></i> -->
+          <img class="img pr-1" src="/hashtag_green_01.png" width="40" />
+          <input class="px-3 py-1 rounded" type="text" placeholder=""/>
+          <!-- <i class="bi bi-trash-fill text-xl pl-2 text-gray-400"></i> -->
+          <img class="img pl-1" src="/trash_green_01.png" width="40" />
         </li>
       </ul>
-
+      <div class="pb-4 text-gray-400 flex">
+        <!-- <i class="bi bi-plus-circle pl-3 pr-1"></i> -->
+        <img class="img pr-1" src="/plus_green_01.png" width="30" /> タグを追加する
+      </div>
 
       <div class="py-2">
         <textarea rows="5" class="w-full p-2 rounded" v-model="description" placeholder="概要"></textarea>
@@ -50,7 +52,10 @@
           ToDoを追加する
         </li>
       </ul>
-
+      <div class="pb-4 text-gray-400 flex">
+        <!-- <i class="bi bi-plus-circle pl-3 pr-1"></i> -->
+        <img class="img pr-1" src="/plus_green_01.png" width="30" />ToDoを追加する
+      </div>
 
 
     </div>
@@ -139,12 +144,20 @@ export default {
 
 <style lang="scss" scoped>
 .mt-18 { margin-top: 4.5rem; }
-.bg-pink { background-color: #da0063; }
+.bg-pink { background-color: #F45B69; }
+.pink {color: #F45B69;}
+.green {color: #3E9E9C}
 
 
 /* Date-ctk-picker */
 label.field-label { display: none }
 
+::v-deep {
+  .field-input {
+    border: solid 4px #99C9C5;
+    background-color: #F4F3EE;
+  }
+}
 
 .header {
   position: fixed;
@@ -167,22 +180,25 @@ label.field-label { display: none }
 }
 
 input[type="text"], textarea {
-  border: solid 1px #888;
+  border: solid 4px #99C9C5;
 }
 
 input, select, textarea {
   -webkit-appearance: none;
   appearance: none;
+  background-color: #F4F3EE;
 }
 
 input[type="checkbox"]::before {
   font-family: bootstrap-icons !important;
   content: "\f584";
+  color: #99C9C5;
 }
 
 input[type="checkbox"]:checked::before {
   font-family: bootstrap-icons !important;
   content: "\f26c";
+  color: #99C9C5;
 }
 
 ::v-deep {
