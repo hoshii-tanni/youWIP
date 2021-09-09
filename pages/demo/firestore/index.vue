@@ -39,6 +39,14 @@
    >
      getData
    </button>
+
+   <button
+     type="button"
+     @click="getAllTodos"
+   >
+     getAllTodos
+   </button>
+
    <div id="task.title" />
    <div id="task.description" />
    <div id="task.date" />
@@ -81,6 +89,16 @@ export default {
            document.getElementById("task.date").innerHTML = (doc.data().deadline)
          })
    },
+
+    getAllTodos(){
+      const db=this.$fire.firestore;
+      db.collection("tasks").get().then(snapShot => {
+        console.log(snapShot);
+        //snapShot.forEach(doc =>{
+        //  console.log(`id:${doc.id},title: ${doc.data().title}`);
+        //})
+      })
+    },
  },
  
 }

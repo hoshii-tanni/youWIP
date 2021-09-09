@@ -5,6 +5,9 @@
     <div @click="test()">val: {{ val }} (変数の呼び出し)</div>
     <div class="b p-4 my-2 font-bold" @click="$router.push('/demo/transition')">GO TO demo/transition</div>
     <div class="bg-green-100 p-4 my-2 font-bold" @click="$router.push('/demo/add_firestore')">GO TO demo/add_firestore</div>
+    <button type="button" @click="getAllTodos">
+     getAllTodos
+   </button>
   </div>
 </template>
 
@@ -59,6 +62,18 @@ export default {
       console.log(this.str) // グローバル変数読み込み
       console.log(string) // 関数の引数の読み込み
       console.log(x) // ローカル変数の読み込み
+    },
+    getAllTodos(){
+      //let data=[];
+      const db=this.$fire.firestore;
+      db.collection("tasks").get().then(snapShot=>{
+        snapShot.forEach(doc => {
+          console.log(`id:${doc.id},title: ${doc.data().todo}`)
+        })
+      });
+        //snapShot.forEach(doc =>{
+        //  console.log(`id:${doc.id},title: ${doc.data().title}`);
+        //})
     },
   },
 
