@@ -11,13 +11,19 @@
   "dependencies": {
     "@nuxtjs/firebase": "^7.6.1",
     "@nuxtjs/tailwindcss": "^4.2.1",
+    "@types/fibers": "^3.1.1",
     "autoprefixer": "^10.3.4",
+    "bootstrap-icons": "^1.5.0",
     "core-js": "^3.15.1",
-    "firebase": "^9.0.1",
+    "fibers": "^5.0.0",
+    "firebase": "8.3.1",
     "firebase-tools": "^9.17.0",
     "nuxt": "^2.15.7",
     "postcss": "^8.3.6",
-    "tailwindcss": "^2.2.10"
+    "sass": "1.37.5",
+    "sass-loader": "10.1.0",
+    "tailwindcss": "^2.2.10",
+    "vue-ctk-date-time-picker": "^2.5.0"
   },
   "devDependencies": {}
 }
