@@ -45,11 +45,9 @@
 
       <ul class="py-2">
         <li v-for="(n,i) in todo.length" :key="i" class="flex items-center my-2">
-          <input id="todo" class="text-xl pr-2" v-model="todo[i].checked" type="checkbox"/>
-          <label for="todo">
+          <input class="text-xl pr-2" v-model="todo[i].checked" type="checkbox"/>
           <input class="w-full px-2 py-1 rounded" v-model="todo[i].title" type="text" placeholder="ToDo..."/>
-          </label>
-          <img @click="removeTodo(i)" class="img left" src="/trash_green_01.png" width="35" />
+          <img @click="removeTodo(i)" class="img left" src="/trash_green_01.png" width="40" />
         </li>
         <li @click="addTodo()" class="my-1 text-gray-400 flex">
           <img class="img right" src="/plus_green_01.png" width="25" />
@@ -75,7 +73,9 @@ export default {
 
   data() {
     return {
+      usr_id: "",
       title: "", // タイトル
+      image: "", // ヘッダ画像を追加
       deadline: "", // 締め切り
       description: "", // 概要
       tags: [], // タグ
@@ -84,6 +84,15 @@ export default {
   },
 
   created() {
+
+    // cookieの取得とusr_idの設定
+    let usr_id = this.$cookies.get("usr_id");
+    if(usr_id==null) { usr_id = this.makeRandomUsrId(12); }
+
+    this.usr_id = usr_id;
+    this.$cookies.set("usr_id", usr_id, { path:"/", maxAge: 60 * 60 * 24 * 90 });
+
+    // タグとtodoの初期化
     this.addTag();
     this.addTodo();
   },
@@ -122,7 +131,9 @@ export default {
       let dbTasks = this.$fire.firestore.collection('tasks')
       dbTasks
         .add({
+          usr_id: this.usr_id,
           title: this.title,
+          image: this.image,
           tags: this.tags,
           description: this.description,
           deadline: this.deadline,
@@ -169,7 +180,7 @@ label.field-label { display: none }
   z-index: 10;
 
   /*backdrop-filter: blur(5px);*/
-  background-color: #fff;
+  background-color: #F4F3EE;
 
   display: flex;
   justify-content: space-between;
