@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center">
 
     <div class="header">
-      <img @click="$router.push('/post')" class="img" src="/plus_green_01.png" width="40" />
+      <img @click="$router.push('/tasks/new')" class="img" src="/plus_green_01.png" width="40" />
       <img class="img" src="/colored.png" />
       <img class="img" src="/timeline.png" width="40" />
     </div>
@@ -13,7 +13,6 @@
           <div v-if="tasks[i].image!=''" class="image" :style="'background-image: url(' + tasks[i].image + ');'"></div>
           <div class="mx-2 mt-2 flex justify-between items-end">
             <div class="text-xl font-bold">{{tasks[i].title}}</div>
-            <!--<i class="bi bi-pencil-fill bg-pink text-white flex justify-center items-center rounded w-8 h-8"></i>-->
             <img class="img" src="/edit.png" width="40" />
           </div>
           <div class="mx-2 my-1 text-gray-500">
@@ -80,22 +79,51 @@ input, select, textarea {
   appearance: none;
 }
 
+input[type='checkbox'] {
+  appearance: none;
+  outline: none;
+
+  display: block;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+}
+
 input[type="checkbox"]::before {
-  font-family: bootstrap-icons !important;
-  content: "\f584";
-  color: #99C9C5;
+  display: block;
+  position: absolute;
+  content: "";
+
+  width: 28px;
+  height: 28px;
+  border: solid 3px #99C9C5;
 
   display: flex;
   justify-content: center;
 }
 
-input[type="checkbox"]:checked::before {
-  font-family: bootstrap-icons !important;
-  content: "\f26c";
-  color: #99C9C5;
+
+input[type="checkbox"]::after {
+  display: block;
+  content: "";
+  background-image: url(/check.png);
+  background-size: contain;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -3px;
+  left: -5px;
+
+  opacity: 0;
 }
 
-
+input[type="checkbox"]:checked:after {
+    opacity: 1;
+}
 
 .header {
   position: fixed;
