@@ -16,6 +16,8 @@
         <i class="bi bi-calendar-check text-2xl pr-1"></i>
         <Datetime
           v-model="deadline"
+          :color="'#99C9C5'"
+          :button-color="'#99C9C5'"
           :label="'締め切り'"
         ></Datetime>
       </div>
@@ -181,6 +183,12 @@ input[type="checkbox"]::before {
 input[type="checkbox"]:checked::before {
   font-family: bootstrap-icons !important;
   content: "\f26c";
+}
+
+::v-deep {
+  .field-input {
+    border: solid 2px #99C9C5;
+  }
 }
 
 
