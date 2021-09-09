@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center">
     <div class="header w-full h-20 z-10">
       <!-- <i class="bi bi-chevron-left green text-2xl"></i> -->
-      <img class="img py-2" src="/back_01.png" width="40" />
+      <img @click="$router.push('/tasks')" class="img py-2" src="/back_01.png" width="40" />
       <div @click="display()" class="text-gray-500 font-bold">タスクの編集</div>
       <div @click="submit()" class="px-4 py-2 bg-pink text-white rounded">保存</div>
     </div>
@@ -168,7 +168,7 @@ label.field-label { display: none }
   z-index: 10;
 
   /*backdrop-filter: blur(5px);*/
-  background-color: #F4F3EE;
+  background-color: #fff;
 
   display: flex;
   justify-content: space-between;

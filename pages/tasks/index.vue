@@ -2,9 +2,9 @@
   <div class="flex flex-col items-center">
 
     <div class="header">
-      <i @click="$router.push('/tasks/new')" class="bi bi-plus-circle text-2xl"></i>
-      <div class="text-2xl">youWIP</div>
-      <i class="bi bi-clock-fill text-2xl"></i>
+      <img @click="$router.push('/tasks/new')" class="img" src="/plus_green_01.png" width="40" />
+      <img class="img" src="/colored.png" />
+      <img class="img" src="/timeline.png" width="40" />
     </div>
 
     <div class="content max-w-lg w-full px-3 mt-16 mb-96 box-border flex flex-col">
@@ -13,7 +13,7 @@
           <div v-if="tasks[i].image!=''" class="image" :style="'background-image: url(' + tasks[i].image + ');'"></div>
           <div class="mx-2 mt-2 flex justify-between items-end">
             <div class="text-xl font-bold">{{tasks[i].title}}</div>
-            <i class="bi bi-pencil-fill bg-pink text-white flex justify-center items-center rounded w-8 h-8"></i>
+            <img class="img" src="/edit.png" width="40" />
           </div>
           <div class="mx-2 my-1 text-gray-500">
             <ul class="flex">
