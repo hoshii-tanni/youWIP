@@ -2,9 +2,9 @@
   <div class="flex flex-col items-center">
 
     <div class="header">
-      <img @click="$router.push('/tasks/new')" class="img" src="/plus_green_01.png" width="40" />
-      <img class="img" src="/colored.png" />
-      <img class="img" src="/timeline.png" width="40" />
+      <img @click="$router.go(-1)" class="img py-2" src="/back_01.png" width="40" />
+      <div class="text-xl font-bold">{{this.$router.app.context.params.tag_id}}</div>
+      <div class="w-10"></div>
     </div>
 
     <div class="content max-w-lg w-full px-3 mt-16 mb-96 box-border flex flex-col">
@@ -47,8 +47,6 @@ export default {
   transition(to, from) {
     if (to.path=="/tasks/new") return "to-right";
     if (from!=undefined && from.path=="/tasks/new") return "to-left";
-    if (to.path=="/tasks/*") return "to-right";
-    if (from!=undefined && from.path=="/tasks/*") return "to-left";
     
     return "fade";
   },
@@ -69,8 +67,9 @@ export default {
     this.usr_id = usr_id;
     this.$cookies.set("usr_id", usr_id, { path:"/", maxAge: 60 * 60 * 24 * 90 });
 
-    // usr_id の一致するタスクを取得
-    this.tasks = this.getTaskFromUsrId(this.usr_id);
+    // tag の一致するタスクを取得
+    console.log(this.$router.app.context.params.tag_id)
+    this.tasks = this.getTaskFromTag(this.$router.app.context.params.tag_id);
 
 
     // テスト用task
@@ -115,12 +114,13 @@ export default {
 
       db.collection("tasks").where("tags","array-contains",tag).get().then(snapShot => {
         snapShot.forEach(doc =>{
-          result.push(doc.data().todo);
+          result.push(doc.data());
         })
       })
+
+      return result;
     },
 
-    // ユーザidからタスクを探す
     getTaskFromUsrId(usr_id){
       const db = this.$fire.firestore;
       let result = [];
@@ -150,20 +150,6 @@ export default {
 input, select, textarea {
   -webkit-appearance: none;
   appearance: none;
-}
-
-input[type='checkbox'] {
-  appearance: none;
-  outline: none;
-
-  display: block;
-  position: relative;
-  text-align: center;
-  cursor: pointer;
-
-  width: 28px;
-  height: 28px;
-  margin-right: 10px;
 }
 
 input[type="checkbox"]::before {
