@@ -153,6 +153,9 @@ export default {
         deadline: this.task.deadline,
         todo: this.task.todo,
       })
+      .then(()=>{
+        this.$router.go(-1);
+      })
     },
 
     // 保存

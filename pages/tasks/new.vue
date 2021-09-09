@@ -8,6 +8,10 @@
     </div>
 
     <div class="content max-w-lg w-full px-3 mt-20 mb-96 box-border flex flex-col">
+      <!--div>
+        <input type="file" accept="image/png,image/jpeg,image/gif">
+      </div-->
+
       <div class="py-4">
         <input class="w-full px-2 py-4 border-white rounded text-lg font-bold" v-model="title" type="text" placeholder="タイトル"/>
       </div>
@@ -141,6 +145,7 @@ export default {
         })
         .then(ref => {
           console.log('Add ID: ', ref.id)
+          this.$router.go(-1);
         })
     },
 
