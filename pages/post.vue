@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center">
 
-    <div class="header h-14 z-10">
+    <div class="header">
       <i class="bi bi-chevron-left text-2xl"></i>
       <div @click="display()">タスクの編集</div>
       <div @click="submit()" class="px-4 py-1 bg-pink text-white rounded">保存</div>
@@ -33,11 +33,11 @@
       </ul>
 
 
-      <div class="py-3">
+      <div class="py-2">
         <textarea rows="5" class="w-full p-2 rounded" v-model="description" placeholder="概要"></textarea>
       </div>
 
-      <ul class="py-3">
+      <ul class="py-2">
         <li v-for="(n,i) in todo.length" :key="i" class="flex items-center my-2">
           <input class="text-xl pr-2" v-model="todo[i].checked" type="checkbox"/>
           <input class="w-full px-2 py-1 rounded" v-model="todo[i].title" type="text" placeholder="ToDo..."/>
@@ -148,11 +148,16 @@ label.field-label { display: none }
   position: fixed;
   top: 0; left: 0;
 
-  width: 100%;
+  width: 100%; height: 3.5rem;
   padding: 0 .75rem;
+  border-bottom: solid 1px #aaa;
+  border-radius: .5rem;
   box-sizing: border-box;
 
-  backdrop-filter: blur(5px);
+  z-index: 10;
+
+  /*backdrop-filter: blur(5px);*/
+  background-color: #fff;
 
   display: flex;
   justify-content: space-between;
