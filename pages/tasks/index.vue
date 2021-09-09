@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center">
 
     <div class="header">
-      <i class="bi bi-plus-circle text-2xl"></i>
+      <i @click="$router.push('/tasks/new')" class="bi bi-plus-circle text-2xl"></i>
       <div class="text-2xl">youWIP</div>
       <i class="bi bi-clock-fill text-2xl"></i>
     </div>
@@ -44,6 +44,15 @@
 
 <script>
 export default {
+  transition(to, from) {
+    if (to.path=="/tasks/new") return "to-right";
+    if (from!=undefined && from.path=="/tasks/new") return "to-left";
+    
+
+
+    return "fade";
+  },
+
   data() {
     return {
       tasks: [],
@@ -64,6 +73,21 @@ export default {
         deadline: "",
       }], // ToDo
     })
+
+    //this.getTaskFromTag("test1");
+  },
+
+  methods:{
+    getTaskFromTag(tag){
+      const db=this.$fire.firestore;
+      let result = [];
+
+      db.collection("tasks").where("tags","array-contains",tag).get().then(snapShot => {
+        snapShot.forEach(doc =>{
+          result.push(doc.data().todo);
+        })
+      })
+    }
   }
 
 }
