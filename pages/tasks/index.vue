@@ -191,6 +191,7 @@ input[type="checkbox"]::after {
   top: -3px;
   left: -5px;
 
+  background-repeat: no-repeat;
   opacity: 0;
 }
 

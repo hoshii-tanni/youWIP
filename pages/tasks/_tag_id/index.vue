@@ -153,21 +153,37 @@ input, select, textarea {
 }
 
 input[type="checkbox"]::before {
-  font-family: bootstrap-icons !important;
-  content: "\f584";
-  color: #99C9C5;
+  display: block;
+  position: absolute;
+  content: "";
+
+  width: 28px;
+  height: 28px;
+  border: solid 3px #99C9C5;
 
   display: flex;
   justify-content: center;
 }
 
-input[type="checkbox"]:checked::before {
-  font-family: bootstrap-icons !important;
-  content: "\f26c";
-  color: #99C9C5;
+
+input[type="checkbox"]::after {
+  display: block;
+  content: "";
+  background-image: url(/check.png);
+  background-size: contain;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -3px;
+  left: -5px;
+
+  background-repeat: no-repeat;
+  opacity: 0;
 }
 
-
+input[type="checkbox"]:checked:after {
+    opacity: 1;
+}
 
 .header {
   position: fixed;

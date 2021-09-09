@@ -212,13 +212,16 @@ input[type='checkbox'] {
 }
 
 input[type="checkbox"]::before {
-    display: block;
-    position: absolute;
+  display: block;
+  position: absolute;
   content: "";
 
   width: 28px;
   height: 28px;
   border: solid 3px #99C9C5;
+
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -233,6 +236,7 @@ input[type="checkbox"]::after {
   top: -3px;
   left: -5px;
 
+  background-repeat: no-repeat;
   opacity: 0;
 }
 
