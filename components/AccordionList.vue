@@ -1,6 +1,6 @@
 <template>
   <dl class="accordion flex flex-col-reverse">
-    <dt @click="click" class="title flex justify-center mt-1">
+    <dt @click="click" class="title flex justify-center my-1">
       <i class="bi bi-chevron-down flex justify-center items-end text-gray-500 text-xl"></i>
     </dt>
     <dd style="display:none;" class="inner">
@@ -103,7 +103,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .accordion {
   .title {
     display: flex;
