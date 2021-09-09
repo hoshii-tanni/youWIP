@@ -152,7 +152,7 @@ export default {
 
 <style lang="scss" scoped>
 .mt-18 { margin-top: 4.5rem; }
-.bg-pink { background-color: #F45B69; }
+.bg-pink { background-color: #F45B69 }
 .left {margin-left: 10px}
 .right {margin-right: 10px}
 
