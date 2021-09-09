@@ -4,7 +4,7 @@
       <!-- <i class="bi bi-chevron-left green text-2xl"></i> -->
       <img @click="$router.go(-1)" class="img py-2" src="/back_01.png" width="40" />
       <div class="text-gray-500 font-bold">タスクの編集</div>
-      <div @click="submit()" class="px-4 py-2 bg-pink text-white rounded">保存</div>
+      <div @click="submit(), $router.go(-1)" class="px-4 py-2 bg-pink text-white rounded">保存</div>
     </div>
 
     <div class="content max-w-lg w-full px-3 mt-20 mb-96 box-border flex flex-col">
@@ -141,7 +141,7 @@ export default {
         })
         .then(ref => {
           console.log('Add ID: ', ref.id)
-        })
+        });
     },
 
 
