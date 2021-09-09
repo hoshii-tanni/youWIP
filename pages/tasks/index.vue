@@ -48,19 +48,31 @@ export default {
     if (to.path=="/tasks/new") return "to-right";
     if (from!=undefined && from.path=="/tasks/new") return "to-left";
     
-
-
     return "fade";
   },
 
   data() {
     return {
+      usr_id: "",
       tasks: [],
 
     }
   },
 
   created() {
+    // cookieの取得とusr_idの設定
+    let usr_id = this.$cookies.get("usr_id");
+    if(usr_id==null) { usr_id = this.makeRandomUsrId(12); }
+
+    this.usr_id = usr_id;
+    this.$cookies.set("usr_id", usr_id, { path:"/", maxAge: 60 * 60 * 24 * 90 });
+
+    // usr_id の一致するタスクを取得
+    this.tasks = this.getTaskFromUsrId(this.usr_id);
+
+
+    // テスト用task
+    /*
     this.tasks.push({
       title: "グミを作りたい", // タイトル
       image: "/img/45_result_Cycles_960.png",　// 画像パス
@@ -73,13 +85,25 @@ export default {
         deadline: "",
       }], // ToDo
     })
-
-    //this.getTaskFromTag("test1");
+    */
   },
 
   methods:{
+    // 文字列の長さを引数に取り、ランダムな英数字列を返す
+    makeRandomUsrId(length) {
+      let c = "ABCDEFGHIJKLMNOPQRSTUVWXWZabcdefghijklmnopqrstuvwxyz0123456789";
+      let cl = c.length;
+      let result = "";
+      for (var i = 0; i < length; i++) {
+        result += c[Math.floor(Math.random() * cl)];
+      }
+
+      return result;
+    },
+
+    // タグからタスクを探す
     getTaskFromTag(tag){
-      const db=this.$fire.firestore;
+      const db = this.$fire.firestore;
       let result = [];
 
       db.collection("tasks").where("tags","array-contains",tag).get().then(snapShot => {
@@ -87,7 +111,24 @@ export default {
           result.push(doc.data().todo);
         })
       })
-    }
+    },
+
+    getTaskFromUsrId(usr_id){
+      const db = this.$fire.firestore;
+      let result = [];
+
+      db.collection("tasks").where("usr_id","==",usr_id).get().then(snapShot => {
+        snapShot.forEach(doc =>{
+          result.push(doc.data());
+        })
+      })
+
+      return result;
+    },
+
+    
+
+
   }
 
 }
