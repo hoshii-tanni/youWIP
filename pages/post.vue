@@ -18,6 +18,8 @@
 
         <Datetime
           v-model="deadline"
+          :color="'#99C9C5'"
+          :button-color="'#99C9C5'"
           :label="'締め切り'"
         ></Datetime>
       </div>
@@ -160,7 +162,7 @@ label.field-label { display: none }
   width: 100%; height: 3.5rem;
   padding: 0 .75rem;
   border-bottom: solid 1px #aaa;
-  border-radius: .5rem;
+  border-radius: 0 0 .5rem .5rem;
   box-sizing: border-box;
 
   z-index: 10;
@@ -194,5 +196,12 @@ input[type="checkbox"]:checked::before {
   content: "\f26c";
   color: #99C9C5;
 }
+
+::v-deep {
+  .field-input {
+    border: solid 4px #99C9C5;
+  }
+}
+
 
 </style>
