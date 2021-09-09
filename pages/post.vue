@@ -24,18 +24,19 @@
       </div>
 
       <ul class="py-3">
-        <li class="flex items-center">
+        <li v-for="(n,i) in tags.length" :key="i" class="flex items-center my-2">
           <!-- <i class="bi bi-hash text-2xl pr-1"></i> -->
-          <img class="img pr-1" src="/hashtag_green_01.png" width="40" />
-          <input class="px-3 py-1 rounded" type="text" placeholder=""/>
+          <img class="img pr-1 w-10" src="/hashtag_green_01.png" />
+          <input class="px-2 py-1 rounded" v-model="tags[i]" type="text" placeholder=""/>
           <!-- <i class="bi bi-trash-fill text-xl pl-2 text-gray-400"></i> -->
-          <img class="img pl-1" src="/trash_green_01.png" width="40" />
+          <img class="img pl-1 w-10" src="/trash_green_01.png" />
+        </li>
+        <li @click="addTag()" class="my-1 text-gray-400">
+          <i class="bi bi-plus-circle pl-3 pr-1"></i>
+          タグを追加する
         </li>
       </ul>
-      <div class="pb-4 text-gray-400 flex">
-        <!-- <i class="bi bi-plus-circle pl-3 pr-1"></i> -->
-        <img class="img pr-1" src="/plus_green_01.png" width="30" /> タグを追加する
-      </div>
+ 
 
       <div class="py-2">
         <textarea rows="5" class="w-full p-2 rounded" v-model="description" placeholder="概要"></textarea>
@@ -52,10 +53,7 @@
           ToDoを追加する
         </li>
       </ul>
-      <div class="pb-4 text-gray-400 flex">
-        <!-- <i class="bi bi-plus-circle pl-3 pr-1"></i> -->
-        <img class="img pr-1" src="/plus_green_01.png" width="30" />ToDoを追加する
-      </div>
+
 
 
     </div>
@@ -166,7 +164,7 @@ label.field-label { display: none }
   width: 100%; height: 3.5rem;
   padding: 0 .75rem;
   border-bottom: solid 1px #aaa;
-  border-radius: .5rem;
+  border-radius: 0 0 .5rem .5rem;
   box-sizing: border-box;
 
   z-index: 10;
@@ -203,7 +201,7 @@ input[type="checkbox"]:checked::before {
 
 ::v-deep {
   .field-input {
-    border: solid 2px #99C9C5;
+    border: solid 4px #99C9C5;
   }
 }
 
