@@ -1,18 +1,18 @@
 <template>
   <div class="flex flex-col items-center">
 
-    <div class="header w-full h-14 z-10">
+    <div class="header h-14 z-10">
       <i class="bi bi-chevron-left text-2xl"></i>
       <div @click="display()">タスクの編集</div>
-      <div class="px-4 py-1 bg-pink text-white rounded">保存</div>
+      <div @click="submit()" class="px-4 py-1 bg-pink text-white rounded">保存</div>
     </div>
 
     <div class="content max-w-lg w-full px-3 mt-16 mb-96 box-border flex flex-col">
-      <div class="py-3">
+      <div class="py-2">
         <input class="w-full px-2 py-1 border-white rounded text-lg font-bold" v-model="title" type="text" placeholder="タイトル"/>
       </div>
 
-      <div class="py-3 flex items-center">
+      <div class="py-2 flex items-center">
         <i class="bi bi-calendar-check text-2xl pr-1"></i>
         <Datetime
           v-model="deadline"
@@ -20,7 +20,7 @@
         ></Datetime>
       </div>
 
-      <ul class="py-3">
+      <ul class="py-2">
         <li v-for="(n,i) in tags.length" :key="i" class="flex items-center my-2">
           <i class="bi bi-hash text-2xl pr-1"></i>
           <input class="px-2 py-1 rounded" v-model="tags[i]" type="text" placeholder=""/>
@@ -34,7 +34,7 @@
 
 
       <div class="py-3">
-        <textarea rows="5" class="w-full p-2 rounded" placeholder="概要"></textarea>
+        <textarea rows="5" class="w-full p-2 rounded" v-model="description" placeholder="概要"></textarea>
       </div>
 
       <ul class="py-3">
@@ -72,10 +72,9 @@ export default {
     return {
       title: "", // タイトル
       deadline: "", // 締め切り
+      description: "", // 概要
       tags: [], // タグ
-      todo: [],
-
-
+      todo: [], // ToDo
     }
   },
 
@@ -114,6 +113,22 @@ export default {
       this.todo.splice(idx, 1);
     },
 
+    // 保存
+    submit () {
+      let dbTasks = this.$fire.firestore.collection('tasks')
+      dbTasks
+        .add({
+          title: this.title,
+          tags: this.tags,
+          description: this.description,
+          deadline: this.deadline,
+          todo: this.todo,
+        })
+        .then(ref => {
+          console.log('Add ID: ', ref.id)
+        })
+    },
+
 
   }
 
@@ -133,6 +148,7 @@ label.field-label { display: none }
   position: fixed;
   top: 0; left: 0;
 
+  width: 100%;
   padding: 0 .75rem;
   box-sizing: border-box;
 
